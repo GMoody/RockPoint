@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="main_div" class="android-header mdl-layout__header mdl-layout__header--waterfall">
+
+    <div class="mdl-layout__header-row">
+        <th:block th:replace="fragments/body :: logoSpacer"/>
+
+        <a class="mdl-navigation__link mdl-typography--text-uppercase">
+            <span th:text="${race_title}"></span>
+        </a>
+
+        <a id="u-gategries--button" class="mdl-navigation__link mdl-typography--text-uppercase">
+            <i class="material-icons u-like--all">arrow_downward</i>
+            <i class="material-icons u-like--all u-display--none">arrow_upward</i>
+            <span th:text="#{category}"></span>
+        </a>
+
+        <!-- Navigation -->
+        <div th:replace="fragments/navigation :: main_navigation" class="android-navigation-container"></div>
+
+    </div>
+
+    <div id=js-filter-content class="u-fillter--content u-display--none">
+        <ul class=mdl-list>
+            <li class=mdl-list__item>
+                <span class=mdl-list__item-primary-content>
+                    <span th:text="#{category.man}"></span>
+                        <span class="mdl-list__item-secondary-action u-margin--left5 u-move--margin-T">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=man>
+                                <input type=radio id=man class=mdl-radio__button name=options value=1>
+                            </label>
+                        </span>
+                </span>
+            </li>
+
+            <li class=mdl-list__item>
+                <span class=mdl-list__item-primary-content>Mix
+                    <span class="mdl-list__item-secondary-action u-margin--left5 u-move--margin-T">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=mix>
+                            <input type=radio id=mix class=mdl-radio__button name=options value=1>
+                        </label>
+                    </span>
+                </span>
+            </li>
+
+            <li class=mdl-list__item>
+                <span class=mdl-list__item-primary-content>
+                    <span th:text="#{category.woman}"></span>
+                        <span class="mdl-list__item-secondary-action u-margin--left5 u-move--margin-T">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=woman>
+                                <input type=radio id=woman class=mdl-radio__button name=options value=1>
+                            </label>
+                        </span>
+                </span>
+            </li>
+
+            <li class=mdl-list__item>
+                <span class=mdl-list__item-primary-content>
+                    <span th:text="#{category.man_dog}"></span>
+                        <span class="mdl-list__item-secondary-action u-margin--left5 u-move--margin-T">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=mdog>
+                                <input type=radio id=mdog class=mdl-radio__button name=options value=1>
+                            </label>
+                        </span>
+                </span>
+            </li>
+
+            <li class=mdl-list__item>
+                <span class=mdl-list__item-primary-content>
+                    <span th:text="#{category.woman_dog}"></span>
+                        <span class="mdl-list__item-secondary-action u-margin--left5 u-move--margin-T">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for=wdog>
+                                <input type=radio id=wdog class=mdl-radio__button name=options value=1>
+                            </label>
+                        </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<th:block th:fragment="logoSpacer">
+    <span class="android-title mdl-layout-title">
+        <img class="android-logo-image" src="../../static/images/rock-logo.png" th:src="@{/images/rock-logo.png}">
+    </span>
+
+    <!-- Add spacer, to align navigation to the right in desktop -->
+    <div class="android-header-spacer mdl-layout-spacer"></div>
+</th:block>
+
+<div th:fragment="loading" class="u-loading--white">
+    <div id="load"></div>
+</div>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/links :: head_links(title='RP - Races - All')"></head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+
+                <th:block th:replace="fragments/body :: logoSpacer"/>
+
+                <!-- Navigation -->
+                <div th:replace="fragments/navigation :: RRF_navigation" class="android-navigation-container"></div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/drawer :: drawer_main"></div>
+
+        <div class="android-content mdl-layout__content u-content--scrollable">
+            <div id=js-page-content class=page-content>
+                <table id=tableSorting class="u--fixed mdl-data-table mdl-js-data-table u--floated">
+                    <thead id="js-thead-helper" class="padding-fixer"></thead>
+                    <tbody id="js-tbody-helper" class="u-tbody--helper margin-fixer">
+                    <tr>
+                            <th data-sort=int>ID</th>
+                            <th data-sort=string>Date</th>
+                            <th data-sort=string>Title</th>
+                            <th data-sort=int>URL</th>
+                            <th data-sort=float>Distance long</th>
+                            <th data-sort=float>Distance half</th>
+                            <th data-sort=float>Distance short</th>
+                            <th data-sort=float>Elevation long</th>
+                            <th data-sort=float>Elevation half</th>
+                            <th data-sort=float>Elevation short</th>
+                            <th data-sort=float>Long CHP 1</th>
+                            <th data-sort=float>Long CHP 2</th>
+                            <th data-sort=float>Long CHP 3</th>
+                            <th data-sort=float>Long CHP 4</th>
+                            <th data-sort=float>Long CHP 5</th>
+                            <th data-sort=float>Half CHP 1</th>
+                            <th data-sort=float>Half CHP 2</th>
+                            <th data-sort=float>Half CHP 3</th>
+                            <th data-sort=float>Half CHP 4</th>
+                            <th data-sort=float>Short CHP 1</th>
+                            <th data-sort=float>Short CHP 2</th>
+                            <th data-sort=float>Short CHP 3</th>
+                            <th></th>
+                        </tr>
+
+                        <tr th:each="race: ${races}">
+                            <td th:text="${race.race_id}"></td>
+                            <td th:text="${race.race_date}"></td>
+                            <td th:text="${race.race_title}"></td>
+                            <td th:text="${race.race_url}"></td>
+                            <td th:text="${race.distance_long}"></td>
+                            <td th:text="${race.distance_half}"></td>
+                            <td th:text="${race.distance_short}"></td>
+                            <td th:text="${race.elevation_long}"></td>
+                            <td th:text="${race.elevation_short}"></td>
+                            <td th:text="${race.elevation_half}"></td>
+                            <td th:text="${race.chp1_long}"></td>
+                            <td th:text="${race.chp2_long}"></td>
+                            <td th:text="${race.chp3_long}"></td>
+                            <td th:text="${race.chp4_long}"></td>
+                            <td th:text="${race.chp5_long}"></td>
+                            <td th:text="${race.chp1_half}"></td>
+                            <td th:text="${race.chp2_half}"></td>
+                            <td th:text="${race.chp3_half}"></td>
+                            <td th:text="${race.chp4_half}"></td>
+                            <td th:text="${race.chp1_short}"></td>
+                            <td th:text="${race.chp2_short}"></td>
+                            <td th:text="${race.chp3_short}"></td>
+                            <td><a th:href="@{/web/race/{race_id}(race_id=${race.race_id})}"><button class="compare-item-edit mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">mode_edit</i></button></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div th:if="${#lists.isEmpty(races)}">
+                    <div class="u-error">
+                        <i class="material-icons">report_problem</i>
+                        <h1>URL was not initialized!</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

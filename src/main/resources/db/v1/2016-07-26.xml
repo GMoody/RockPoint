@@ -1,0 +1,104 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="tale Race" author="Grigory Tureev" runOnChange="true">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="race" /></not>
+        </preConditions>
+	
+    <createTable tableName="race">
+      <column autoIncrement="true" name="race_id" type="INT">
+		  <constraints nullable="false" primaryKey="true"/>
+      </column>
+
+      <column name="race_title" type="VARCHAR(255)"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="race_date" type="VARCHAR(255)">
+        <constraints nullable="false"/> 
+      </column>
+
+        <column name="race_url" type="INT">
+            <constraints nullable="false"/>
+        </column>
+
+        <column name="distance_long" type="FLOAT">
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="distance_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="distance_short" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="elevation_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="elevation_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="elevation_short" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp1_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp2_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp3_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp4_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp5_long" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp1_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp2_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp3_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp4_half" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp1_short" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp2_short" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+	  <column name="chp3_short" type="FLOAT"> 
+        <constraints nullable="false"/> 
+      </column> 
+	  
+    </createTable>
+  </changeSet>
+	
+</databaseChangeLog>

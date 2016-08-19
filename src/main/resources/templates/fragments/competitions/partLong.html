@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+<div th:fragment="partLong" id=js-page-content class=page-content>
+    <table id=tableSorting class="u--fixed mdl-data-table mdl-js-data-table u--floated">
+        <thead id="js-thead-helper"></thead>
+        <tbody id="js-tbody-helper" class="u-tbody--helper">
+        <tr>
+            <th data-sort=int       th:text="#{table.header.place}"></th>
+            <th data-sort=string    th:text="#{table.header.team}"></th>
+            <th id="category" data-sort=string    th:text="#{table.header.category}"></th>
+            <th data-sort=int>No</th>
+            <th data-sort=string    th:text="#{table.header.name1}"></th>
+            <th data-sort=string    th:text="#{table.header.surname1}"></th>
+            <th data-sort=int>No</th>
+            <th data-sort=string    th:text="#{table.header.name2}"></th>
+            <th data-sort=string    th:text="#{table.header.surname2}"></th>
+            <th data-sort=string    th:text="#{table.header.finish}"></th>
+            <th data-sort=string>CHP1</th>
+            <th data-sort=string>CHP2</th>
+            <th data-sort=string>CHP3</th>
+            <th data-sort=string>CHP4</th>
+
+            <th:block th:if="${#lists.size(competitionsLong[0].checkpoints) == 5}">
+                <th data-sort=string>CHP5<i class="material-icons">arrow_drop_down</i></th>
+            </th:block>
+
+            <th></th>
+        </tr>
+
+        <tr th:each="comp: ${competitionsLong}">
+            <td th:text="${comp.place}"></td>
+            <td th:text="${comp.team.title}"></td>
+            <td th:text="${comp.team.category.title}"></td>
+
+            <th:block th:each="participant: ${comp.team.participants}">
+                <td th:text="${participant.no}"></td>
+                <td th:text="${participant.fname}"></td>
+                <td th:text="${participant.lname}"></td>
+            </th:block>
+
+            <th:block th:if="${#lists.size(comp.team.participants) == 1}">
+                <td></td>
+                <td></td>
+                <td></td>
+            </th:block>
+
+            <td th:text="${comp.finish} ? ${#joda.format(comp.finish, 'mm:ss:SS')}"></td>
+
+            <th:block th:each="chp : ${comp.checkpoints}">
+                <td th:text="${chp} ? ${#joda.format(chp, 'mm:ss:SS')}"></td>
+            </th:block>
+
+            <td><button class="compare-item mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">add</i></button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

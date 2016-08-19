@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/links :: head_links(title='RP - Registration form')"></head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+
+                <th:block th:replace="fragments/body :: logoSpacer" />
+
+                <!-- Navigation -->
+                <div th:replace="fragments/navigation :: RRF_navigation" class="android-navigation-container"></div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/drawer :: drawer_main"></div>
+
+        <div class="android-content mdl-layout__content u-content--scrollable">
+            <div class="page-content">
+                <!-- Textfield with Floating Label -->
+                <form action="#" class="u-rock--form" th:action="@{/web/race/registration_form}" th:object="${raceEntity}" method="post">
+
+                    <input type="hidden" th:field="*{race_id}"/>
+
+                    <div class="u-list--box">
+                        <h5>General</h5>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="race_title" th:field="*{race_title}"/>
+                            <label class="mdl-textfield__label" for="race_title">Title</label>
+                        </div>
+
+                        <div class="u-input--date mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="race_date" th:field="*{race_date}"/>
+                            <label class="mdl-textfield__label" for="race_date">Date in format [yyyy-mm-dd]</label>
+                        </div>
+
+                        <div class="u-input--date mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="race_url" th:field="*{race_url}"/>
+                            <label class="mdl-textfield__label" for="race_url">URL ID</label>
+                        </div>
+                    </div>
+
+                    <div class="u-list--box">
+                        <h5>Distance</h5>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="dist-long" step="0.01" th:field="*{distance_long}" />
+                            <label class="mdl-textfield__label" for="dist-long">Distance long</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="dist-half" step="0.01" th:field="*{distance_half}" />
+                            <label class="mdl-textfield__label" for="dist-half">Distance half</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="dist-short" step="0.01" th:field="*{distance_short}" />
+                            <label class="mdl-textfield__label" for="dist-short">Distance short</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+                    </div>
+
+                    <div class="u-list--box">
+                        <h5>Elevation</h5>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="elevation_long" step="0.01" th:field="*{elevation_long}" />
+                            <label class="mdl-textfield__label" for="elevation_long">Elevation long</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="elevation_half" step="0.01" th:field="*{elevation_half}" />
+                            <label class="mdl-textfield__label" for="elevation_half">Elevation half</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="elevation_short" step="0.01" th:field="*{elevation_short}" />
+                            <label class="mdl-textfield__label" for="elevation_short">Elevation short</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+                    </div>
+
+                    <div class="u-list--box">
+                        <h5>Checkpoint</h5>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp1_long" step="0.01" th:field="*{chp1_long}" />
+                            <label class="mdl-textfield__label" for="chp1_long">Checkpoint-Long no. 1</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp2_long" step="0.01" th:field="*{chp2_long}" />
+                            <label class="mdl-textfield__label" for="chp2_long">Checkpoint-Long no. 2</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp3_long" step="0.01" th:field="*{chp3_long}" />
+                            <label class="mdl-textfield__label" for="chp3_long">Checkpoint-Long no. 3</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp4_long" step="0.01" th:field="*{chp4_long}" />
+                            <label class="mdl-textfield__label" for="chp4_long">Checkpoint-Long no. 4</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp5_long" step="0.01" th:field="*{chp5_long}" />
+                            <label class="mdl-textfield__label" for="chp5_long">Checkpoint-Long no. 5</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp1_half" step="0.01" th:field="*{chp1_half}" />
+                            <label class="mdl-textfield__label" for="chp1_half">Checkpoint-Half no. 1</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp2_half" step="0.01" th:field="*{chp2_half}" />
+                            <label class="mdl-textfield__label" for="chp2_half">Checkpoint-Half no. 2</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp3_half" step="0.01" th:field="*{chp3_half}" />
+                            <label class="mdl-textfield__label" for="chp3_half">Checkpoint-Half no. 3</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp4_half" step="0.01" th:field="*{chp4_half}" />
+                            <label class="mdl-textfield__label" for="chp4_half">Checkpoint-Half no. 4</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp1_short" step="0.01" th:field="*{chp1_short}" />
+                            <label class="mdl-textfield__label" for="chp1_short">Checkpoint-Short no. 1</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp2_short" step="0.01" th:field="*{chp2_short}" />
+                            <label class="mdl-textfield__label" for="chp2_short">Checkpoint-Short no. 2</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="number" id="chp3_short" step="0.01" th:field="*{chp3_short}" />
+                            <label class="mdl-textfield__label" for="chp3_short">Checkpoint-Short no. 3</label>
+                            <span class="mdl-textfield__error">Input is not a number!</span>
+                        </div>
+                    </div>
+                    <br />
+                    <button class="u-button--filter mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"> Submit </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

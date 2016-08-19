@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/links :: head_links(title='RP - Competitions - Half')"></head>
+
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <div th:replace="fragments/body :: main_div"></div>
+    <div th:replace="fragments/drawer :: drawer_main"></div>
+
+    <div class="android-content mdl-layout__content u-content--scrollable">
+        <div th:if="${not #lists.isEmpty(competitionsHalf)}">
+            <div th:replace="fragments/competitions/partHalf :: partHalf"></div>
+        </div>
+        <div th:if="${#lists.isEmpty(competitionsHalf)}">
+            <div class="u-error">
+                <i class="material-icons">report_problem</i>
+                <h1>URL was not initialized!</h1>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/body :: loading"></div>
+</div>
+
+</body>
+</html>
+
+

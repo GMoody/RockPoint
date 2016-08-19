@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="drawer_main" class="android-drawer mdl-layout__drawer">
+
+    <span class="mdl-layout-title">
+    <img class="android-logo-image" src="../../static/images/rock-logo.png" th:src="@{/images/rock-logo.png}">
+    </span>
+
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="long">Long</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="half">Half</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="short">Short</a>
+        <a style="border-top: 1px solid;" class="mdl-navigation__link mdl-typography--text-uppercase" href="?lang=en">EN</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="?lang=cz">CZ</a>
+    </nav>
+
+</div>
+

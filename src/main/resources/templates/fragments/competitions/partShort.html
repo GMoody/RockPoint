@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head></head>
+
+<body>
+<div th:fragment="partShort" id=js-page-content class=page-content>
+    <table id=tableSorting class="u--fixed mdl-data-table mdl-js-data-table u--floated">
+        <thead id=js-thead-helper></thead>
+        <tbody id="js-tbody-helper" class=u-tbody--helper>
+        <tr>
+            <th data-sort=int       th:text="#{table.header.place}"></th>
+            <th id="category" data-sort=string    th:text="#{table.header.category}"></th>
+            <th data-sort=int>No</th>
+            <th data-sort=string    th:text="#{table.header.name1}"></th>
+            <th data-sort=string    th:text="#{table.header.surname1}"></th>
+            <th data-sort=string    th:text="#{table.header.finish}"></th>
+            <th data-sort=string>CHP1</th>
+            <th></th>
+        </tr>
+
+        <tr th:each="comp: ${competitionsShort}">
+            <td th:text="${comp.place}"></td>
+            <td th:text="${comp.team.category.title}"></td>
+            <td th:text="${comp.team.participants[0].no}"></td>
+            <td th:text="${comp.team.participants[0].fname}"></td>
+            <td th:text="${comp.team.participants[0].lname}"></td>
+            <td th:text="${comp.finish} ? ${#joda.format(comp.finish, 'mm:ss:SS')}"></td>
+            <td th:text="${comp.checkpoints[0]} ? ${#joda.format(comp.checkpoints[0], 'mm:ss:SS')}"></td>
+            <td>
+                <button class="compare-item mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <i class="material-icons">add</i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

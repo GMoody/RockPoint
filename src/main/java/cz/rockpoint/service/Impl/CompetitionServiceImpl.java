@@ -20,4 +20,9 @@ public class CompetitionServiceImpl implements CompetitionService{
         return competitionDao.findByType(type);
     }
 
+    @Override
+    public boolean checkCHPColumn(int type, int column) {
+        return competitionDao.checkCHPColumn(type, column);
+    }
+
 }

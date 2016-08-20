@@ -19,10 +19,22 @@
             <th data-sort=string    th:text="#{table.header.name2}"></th>
             <th data-sort=string    th:text="#{table.header.surname2}"></th>
             <th data-sort=string    th:text="#{table.header.finish}"></th>
-            <th data-sort=string>CHP1</th>
-            <th data-sort=string>CHP2</th>
-            <th data-sort=string>CHP3</th>
-            <th data-sort=string>CHP4</th>
+
+            <th:block th:if="${chp1Column}">
+                <th data-sort=string>CHP1</th>
+            </th:block>
+
+            <th:block th:if="${chp2Column}">
+                <th data-sort=string>CHP2</th>
+            </th:block>
+
+            <th:block th:if="${chp3Column}">
+                <th data-sort=string>CHP3</th>
+            </th:block>
+
+            <th:block th:if="${chp4Column}">
+                <th data-sort=string>CHP4</th>
+            </th:block>
 
             <th:block th:if="${#lists.size(competitionsLong[0].checkpoints) == 5}">
                 <th data-sort=string>CHP5<i class="material-icons">arrow_drop_down</i></th>
@@ -50,8 +62,24 @@
 
             <td th:text="${comp.finish} ? ${#joda.format(comp.finish, 'mm:ss:SS')}"></td>
 
-            <th:block th:each="chp : ${comp.checkpoints}">
-                <td th:text="${chp} ? ${#joda.format(chp, 'mm:ss:SS')}"></td>
+            <th:block th:if="${chp1Column}">
+                <td th:text="${comp.checkpoints[0]} ? ${#joda.format(comp.checkpoints[0], 'mm:ss:SS')}"></td>
+            </th:block>
+
+            <th:block th:if="${chp2Column}">
+                <td th:text="${comp.checkpoints[1]} ? ${#joda.format(comp.checkpoints[1], 'mm:ss:SS')}"></td>
+            </th:block>
+
+            <th:block th:if="${chp3Column}">
+                <td th:text="${comp.checkpoints[2]} ? ${#joda.format(comp.checkpoints[2], 'mm:ss:SS')}"></td>
+            </th:block>
+
+            <th:block th:if="${chp4Column}">
+                <td th:text="${comp.checkpoints[3]} ? ${#joda.format(comp.checkpoints[3], 'mm:ss:SS')}"></td>
+            </th:block>
+
+            <th:block th:if="${#lists.size(competitionsLong[0].checkpoints) == 5}">
+                <td th:text="${comp.checkpoints[4]} ? ${#joda.format(comp.checkpoints[4], 'mm:ss:SS')}"></td>
             </th:block>
 
             <td><button class="compare-item mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"><i class="material-icons">add</i></button></td>

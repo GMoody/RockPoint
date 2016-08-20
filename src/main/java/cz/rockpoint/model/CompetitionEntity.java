@@ -10,6 +10,7 @@ import org.joda.time.LocalTime;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 public class CompetitionEntity implements Serializable {
@@ -31,7 +32,7 @@ public class CompetitionEntity implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm:ss:SS")
     private LocalTime finish;
 
-    @Setter @Getter
+    @Getter @Setter
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "mm:ss:SS")
     private List<LocalTime> checkpoints;
 
@@ -45,4 +46,12 @@ public class CompetitionEntity implements Serializable {
         this.id = ++identifier;
         competitions.add(this);
     }
+
+    public static boolean checkColumn(int type, int column){
+        for (CompetitionEntity competitionEntity : competitions.stream().filter(c -> c.getType() == type).collect(Collectors.toList()))
+            if(competitionEntity.getCheckpoints().get(column) != null)
+                return true;
+        return false;
+    }
+
 }

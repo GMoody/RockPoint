@@ -62,9 +62,10 @@ public class IParserImpl implements IParser {
     public void updateDataFromLong() {
         Elements tdS = getTableDataFromURL("http://85.118.133.203/race.php?id=" + this.URLid + "&distance=long");
 
-        // Check for checkpoints count (for 4 checkpoints - 14, for 5 - 15)
+        // Check for checkpoints count (for 4 CHPs - 14)
         int iterator = 14;
 
+        // In case we have 5 CHP
         if (!tdS.get(14).text().equals("2"))
             iterator = 15;
 
@@ -108,16 +109,16 @@ public class IParserImpl implements IParser {
 
                 // Competition
                 competition_place = Integer.parseInt(tdS.get(i).text());
-                CompetitionEntity competition = getCompetitionByPlaceAndType(competition_place, 0);
+                CompetitionEntity competition = getCompetitionByParticipantAndType(participant1, 0);
 
                 if (competition == null) {
                     competition = new CompetitionEntity();
                     competition.setId();
                     competition.setType(0);
-                    competition.setPlace(competition_place);
                     competition.setTeam(competition_team);
                 }
 
+                competition.setPlace(competition_place);
                 competition_finish = tdS.get(i + 9).text();
                 competition_chp1 = tdS.get(i + 10).text();
                 competition_chp2 = tdS.get(i + 11).text();
@@ -162,7 +163,7 @@ public class IParserImpl implements IParser {
     public void updateDataFromHalf() {
         Elements tdS = getTableDataFromURL("http://85.118.133.203/race.php?id=" + this.URLid + "&distance=half");
 
-        // Check for checkpoints count (for 2 checkpoints - 12, but in 48 URL we had + 2 empty)
+        // Check for checkpoints count (for 4 CHPs - 14)
         int iterator = 14;
 
         // Necessary variables
@@ -171,6 +172,8 @@ public class IParserImpl implements IParser {
         String competition_finish;
         String competition_chp1;
         String competition_chp2;
+        String competition_chp3;
+        String competition_chp4;
         String participant_fname;
         String participant_lname;
         Integer participant1_no;
@@ -201,21 +204,27 @@ public class IParserImpl implements IParser {
 
                 // Competition
                 competition_place = Integer.parseInt(tdS.get(i).text());
-                CompetitionEntity competition = getCompetitionByPlaceAndType(competition_place, 1);
+                CompetitionEntity competition = getCompetitionByParticipantAndType(participant1, 1);
 
                 if (competition == null) {
                     competition = new CompetitionEntity();
                     competition.setId();
                     competition.setType(1);
                     competition.setTeam(competition_team);
-                    competition.setPlace(competition_place);
                 }
 
+                competition.setPlace(competition_place);
                 competition_finish = tdS.get(i + 9).text();
                 competition_chp1 = tdS.get(i + 10).text();
                 competition_chp2 = tdS.get(i + 11).text();
+                competition_chp3 = tdS.get(i + 12).text();
+                competition_chp4 = tdS.get(i + 13).text();
                 competition.setFinish(checkTime(competition_finish));
-                competition.setCheckpoints(Lists.newArrayList(checkTime(competition_chp1), checkTime(competition_chp2)));
+                competition.setCheckpoints(Lists.newArrayList(
+                        checkTime(competition_chp1),
+                        checkTime(competition_chp2),
+                        checkTime(competition_chp3),
+                        checkTime(competition_chp4)));
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -227,7 +236,8 @@ public class IParserImpl implements IParser {
     @Override
     public void updateDataFromShort() {
         Elements tdS = getTableDataFromURL("http://85.118.133.203/race.php?id=" + this.URLid + "&distance=short");
-        // Check for checkpoints count (for 1 checkpoints - 11)
+
+        // Check for checkpoints count (for 4 CHPs - 14)
         int iterator = 14;
 
         // Necessary variables
@@ -235,6 +245,9 @@ public class IParserImpl implements IParser {
         String team_title;
         String competition_finish;
         String competition_chp1;
+        String competition_chp2;
+        String competition_chp3;
+        String competition_chp4;
         String participant_fname;
         String participant_lname;
         Integer participant1_no;
@@ -266,20 +279,27 @@ public class IParserImpl implements IParser {
 
                 // Competition
                 competition_place = Integer.parseInt(tdS.get(i).text());
-                CompetitionEntity competition = getCompetitionByPlaceAndType(competition_place, 2);
+                CompetitionEntity competition = getCompetitionByParticipantAndType(participant1, 2);
 
                 if (competition == null) {
                     competition = new CompetitionEntity();
                     competition.setId();
                     competition.setType(2);
                     competition.setTeam(competition_team);
-                    competition.setPlace(competition_place);
                 }
 
+                competition.setPlace(competition_place);
                 competition_finish = tdS.get(i + 9).text();
                 competition_chp1 = tdS.get(i + 10).text();
+                competition_chp2 = tdS.get(i + 11).text();
+                competition_chp3 = tdS.get(i + 12).text();
+                competition_chp4 = tdS.get(i + 13).text();
                 competition.setFinish(checkTime(competition_finish));
-                competition.setCheckpoints(Lists.newArrayList(checkTime(competition_chp1)));
+                competition.setCheckpoints(Lists.newArrayList(
+                        checkTime(competition_chp1),
+                        checkTime(competition_chp2),
+                        checkTime(competition_chp3),
+                        checkTime(competition_chp4)));
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -338,7 +358,7 @@ public class IParserImpl implements IParser {
         return TeamEntity.getTeams().stream().filter(t -> t.getParticipants().stream().anyMatch(p -> p.equals(personEntity))).findFirst().orElse(null);
     }
 
-    private CompetitionEntity getCompetitionByPlaceAndType(int place, int type) {
-        return CompetitionEntity.getCompetitions().stream().filter(c -> c.getPlace() == place && c.getType() == type).findFirst().orElse(null);
+    private CompetitionEntity getCompetitionByParticipantAndType(PersonEntity personEntity, int type) {
+        return CompetitionEntity.getCompetitions().stream().filter(c -> c.getType() == type && c.getTeam().getParticipants().contains(personEntity)).findFirst().orElse(null);
     }
 }

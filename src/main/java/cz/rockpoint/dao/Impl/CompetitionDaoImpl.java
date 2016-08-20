@@ -15,4 +15,9 @@ public class CompetitionDaoImpl implements CompetitionDao {
     public List<CompetitionEntity> findByType(int type) {
         return CompetitionEntity.getCompetitions().stream().filter(c -> c.getType() == type).collect(Collectors.toList());
     }
+
+    @Override
+    public boolean checkCHPColumn(int type, int column) {
+        return CompetitionEntity.checkColumn(type, column);
+    }
 }
